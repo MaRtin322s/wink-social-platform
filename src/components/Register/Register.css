@@ -1,0 +1,8 @@
+p,
+label {
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+.gender {
+    display: inline-block;
+}
