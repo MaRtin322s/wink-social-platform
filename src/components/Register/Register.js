@@ -1,31 +1,66 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import './Register.css';
 
 const Register = () => {
+    const [values, setValues] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        phone: '',
+        address: ''
+    });
+
+    const registerHandler = (ev) => {
+        ev.preventDefault();
+
+        console.log(values);
+    }
+
+    const changeHandler = (ev) => {
+        ev.preventDefault();
+
+        setValues(state => ({
+            ...state,
+            [ev.target.name]: ev.target.value
+        }));
+    }
+
     return (
         <section id="register">
             <div className="form">
                 <h2>Register</h2>
-                <form className="login-form">
+                <form
+                    className="login-form"
+                    onSubmit={(ev) => registerHandler(ev)}
+                >
                     <input
                         type="text"
                         name="firstName"
                         id="firstName"
                         placeholder="First Name"
+                        value={values.firstName}
+                        onChange={(ev) => changeHandler(ev)}
                     />
 
                     <input
-                        type="password"
+                        type="text"
                         name="lastName"
                         id="lastName"
                         placeholder="Last Name"
+                        value={values.lastName}
+                        onChange={(ev) => changeHandler(ev)}
                     />
 
                     <input
-                        type="password"
+                        type="text"
                         name="email"
                         id="email"
                         placeholder="Email"
+                        value={values.email}
+                        onChange={(ev) => changeHandler(ev)}
                     />
 
                     <input
@@ -33,6 +68,8 @@ const Register = () => {
                         name="password"
                         id="password"
                         placeholder="Password"
+                        value={values.password}
+                        onChange={(ev) => changeHandler(ev)}
                     />
 
                     <input
@@ -40,6 +77,8 @@ const Register = () => {
                         name="confirmPassword"
                         id="confirmPassword"
                         placeholder="Confirm Password"
+                        value={values.confirmPassword}
+                        onChange={(ev) => changeHandler(ev)}
                     />
 
                     <input
@@ -47,6 +86,8 @@ const Register = () => {
                         name="phone"
                         id="phone"
                         placeholder="Mobile Number"
+                        value={values.phone}
+                        onChange={(ev) => changeHandler(ev)}
                     />
 
                     <input
@@ -54,19 +95,9 @@ const Register = () => {
                         name="address"
                         id="address"
                         placeholder="Address"
+                        value={values.address}
+                        onChange={(ev) => changeHandler(ev)}
                     />
-
-                    <div className="genderType">
-                        <p>Please select your gender:</p>
-                        <label>Male</label>
-                        <div className="gender">
-                            <input type="radio" id="female" name="gender" value="female" />
-                        </div>
-                        <label>Female</label>
-                        <div className="gender">
-                            <input type="radio" id="male" name="gender" value="male" />
-                        </div>
-                    </div>
                     <div>
                         <button type="submit">Register</button>
                         <p className="message">
