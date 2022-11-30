@@ -5,7 +5,7 @@ import * as authService from '../../services/authService';
 import './Register.css';
 
 const Register = () => {
-    const { storage } = useContext(AuthContext);
+    const { userLogin } = useContext(AuthContext);
     const navigate = useNavigate();
     const [values, setValues] = useState({
         firstName: '',
@@ -22,7 +22,7 @@ const Register = () => {
 
         authService.registerUser(values)
             .then(user => {
-                storage.setValue(user);
+                userLogin(user);
                 navigate('/', { replace: true });
             });
     }

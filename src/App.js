@@ -9,6 +9,7 @@ import NotFound from "./components/Not found/NotFound";
 import Create from "./components/Create/Create";
 import Profile from "./components/Profile/Profile";
 import { AuthProvider } from "./contexts/AuthContext";
+import Logout from "./components/Logout/Logout";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
                         <Route path="/user/profile" element={<Profile />} />
                         <Route path="/user/login" element={<Login />} />
                         <Route path="/user/register" element={<Register />} />
+                        <Route path="/user/logout" element={<Logout />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </main>

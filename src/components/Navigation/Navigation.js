@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Navigation = () => {
+    const { auth } = useContext(AuthContext);
+
     return (
         <nav className="navbar navbar-expand-lg bg-light">
             <div className="container-fluid">
@@ -13,21 +17,27 @@ const Navigation = () => {
                                 to=""
                             >Home</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/user/profile">Profile</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/publications/create">Create Publication</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/user/login">Login</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/user/register">Register</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/user/logout">Logout</Link>
-                        </li>
+                        {auth.accessToken
+                            ? <>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/user/profile">Profile</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/publications/create">Create Publication</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/user/logout">Logout</Link>
+                                </li>
+                            </>
+                            : <>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/user/login">Login</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/user/register">Register</Link>
+                                </li>
+                            </>
+                        }
                     </ul>
                     <form className="d-flex" role="search">
                         <input
