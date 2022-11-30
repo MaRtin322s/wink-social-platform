@@ -8,24 +8,27 @@ import './App.css'
 import NotFound from "./components/Not found/NotFound";
 import Create from "./components/Create/Create";
 import Profile from "./components/Profile/Profile";
+import { AuthProvider } from "./contexts/AuthContext";
 
 
 function App() {
     return (
         <div>
-            <main>
-                <header>
-                    <Navigation />
-                </header>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/publications/create" element={<Create />} />
-                    <Route path="/user/profile" element={<Profile />} />
-                    <Route path="/user/login" element={<Login />} />
-                    <Route path="/user/register" element={<Register />} />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-            </main>
+            <AuthProvider>
+                <main>
+                    <header>
+                        <Navigation />
+                    </header>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/publications/create" element={<Create />} />
+                        <Route path="/user/profile" element={<Profile />} />
+                        <Route path="/user/login" element={<Login />} />
+                        <Route path="/user/register" element={<Register />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </main>
+            </AuthProvider>
             <Footer />
         </div>
     );

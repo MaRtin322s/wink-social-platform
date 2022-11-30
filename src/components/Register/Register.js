@@ -1,8 +1,12 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+import * as authService from '../../services/authService';
 import './Register.css';
 
 const Register = () => {
+    const { storage } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [values, setValues] = useState({
         firstName: '',
         lastName: '',
@@ -16,7 +20,11 @@ const Register = () => {
     const registerHandler = (ev) => {
         ev.preventDefault();
 
-        console.log(values);
+        authService.registerUser(values)
+            .then(user => {
+                storage.setValue(user);
+                navigate('/', { replace: true });
+            });
     }
 
     const changeHandler = (ev) => {

@@ -3,11 +3,14 @@ const { initialDatabase } = require('../config/db');
 const { initViewEngine } = require('../config/hbs');
 const cookieParser = require('cookie-parser');
 const router = require('./router');
+const cors = require('cors');
 const app = express();
 const port = 5000;
 
 initViewEngine(app);
+app.use(cors());
 app.use(express.static('public'));
+app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(router);
