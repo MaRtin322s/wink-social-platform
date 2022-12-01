@@ -57,4 +57,9 @@ router.get('/logout', (req, res) => {
     }
 });
 
+router.get('/profile/:userId', async (req, res) => {
+    const user = await authService.getOne(req.params.userId);
+    res.json(user);
+});
+
 module.exports = router;

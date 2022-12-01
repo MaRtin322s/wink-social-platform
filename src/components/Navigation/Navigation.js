@@ -20,7 +20,7 @@ const Navigation = () => {
                         {auth.accessToken
                             ? <>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/user/profile">Profile</Link>
+                                    <Link className="nav-link" to={`/user/profile/${auth._id}`}>Profile</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/publications/create">Create Publication</Link>

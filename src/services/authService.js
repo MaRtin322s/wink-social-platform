@@ -31,3 +31,5 @@ export const loginUser = (userData) => {
     })
         .then(res => res.json());
 }
+
+export const getOne = (userId) => fetch(`${baseUrl}/profile/${userId}`).then(res => res.json());

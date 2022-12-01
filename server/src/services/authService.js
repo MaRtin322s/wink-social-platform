@@ -31,3 +31,5 @@ exports.generateToken = async (user) => {
     const token = await jwtSign({ _id: user._id }, SECRET, { expiresIn: '2h' });
     return token;
 }
+
+exports.getOne = async (userId) => await User.findById(userId);

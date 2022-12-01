@@ -1,6 +1,17 @@
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 import Publication from "../Publication/Publication";
+import * as authService from '../../services/authService';
 
 const Profile = () => {
+    const { auth } = useContext(AuthContext);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {   
+        authService.getOne(auth._id)
+            .then(user => setData(user));
+    }, []);
+
     return (
         <section>
             <div className="row">
@@ -13,6 +24,7 @@ const Profile = () => {
                                 className="rounded-circle img-fluid"
                                 style={{ width: 400, padding: 50 }}
                             />
+                            <p>{`${data.firstName} ${data.lastName}`}</p>
                             <div className="d-flex justify-content-center mb-2">
                                 <button type="button" className="btn btn-primary">
                                     Follow
@@ -32,7 +44,7 @@ const Profile = () => {
                                     <p className="mb-0">Full Name</p>
                                 </div>
                                 <div className="col-sm-9">
-                                    <p className="text-muted mb-0">Johnatan Smith</p>
+                                    <p className="text-muted mb-0">{`${data.firstName} ${data.lastName}`}</p>
                                 </div>
                             </div>
                             <hr />
@@ -41,7 +53,7 @@ const Profile = () => {
                                     <p className="mb-0">Email</p>
                                 </div>
                                 <div className="col-sm-9">
-                                    <p className="text-muted mb-0">example@example.com</p>
+                                    <p className="text-muted mb-0">{data.email}</p>
                                 </div>
                             </div>
                             <hr />
@@ -50,7 +62,7 @@ const Profile = () => {
                                     <p className="mb-0">Phone</p>
                                 </div>
                                 <div className="col-sm-9">
-                                    <p className="text-muted mb-0">(097) 234-5678</p>
+                                    <p className="text-muted mb-0">{data.phone}</p>
                                 </div>
                             </div>
                             <hr />
@@ -59,7 +71,7 @@ const Profile = () => {
                                     <p className="mb-0">Address</p>
                                 </div>
                                 <div className="col-sm-9">
-                                    <p className="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                                    <p className="text-muted mb-0">{data.address}</p>
                                 </div>
                             </div>
                         </div>
