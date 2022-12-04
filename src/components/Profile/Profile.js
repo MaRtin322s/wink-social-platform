@@ -10,7 +10,7 @@ const Profile = () => {
     useEffect(() => {   
         authService.getOne(auth._id)
             .then(user => setData(user));
-    }, []);
+    }, [auth._id]);
 
     return (
         <section>
